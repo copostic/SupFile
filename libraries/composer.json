@@ -1,0 +1,7 @@
+{
+  "require": {
+    "fineuploader/php-traditional-server": "1.2.2",
+    "hybridauth/hybridauth": "v3.0.0-rc.5",
+    "smarty/smarty": "~3.1"
+  }
+}
