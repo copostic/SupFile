@@ -1,3 +1,3 @@
 <?php
-$routes = [];
 $routes['default'] = 'main';
+$routes['home'] = 'main';
