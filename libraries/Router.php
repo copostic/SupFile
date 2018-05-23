@@ -11,12 +11,12 @@ class Router
 
     public function __construct() {
         $routes = [];
-        require_once '../config/routes.conf.php';
+        require_once  CONFIG . 'routes.conf.php';
         $this->routes = $routes;
         $url = explode('?', $_SERVER['REQUEST_URI']);
         $this->url = explode('/', $url[0]);
         $this->action = empty($this->url[BASE_URL_PART + 1]) ? 'home' : $this->url[BASE_URL_PART + 1];
-        $this->id = empty($this->url[BASE_URL_PART + 2]) ? null : $this->url[BASE_URL_PART + 2];
+        $this->page = empty($this->url[BASE_URL_PART + 2]) ? null : $this->url[BASE_URL_PART + 2];
         $this->res();
     }
 
@@ -46,8 +46,8 @@ class Router
         return $this->action;
     }
 
-    public function getId() {
-        return $this->id;
+    public function getPage() {
+        return $this->page;
     }
 
     public function getUrl() {
