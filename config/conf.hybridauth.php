@@ -1,6 +1,6 @@
 <?php
 $config = [
-    'callback' => 'http://supfile.tk/',
+    'callback' => 'http://supfile.tk/login',
     'providers' => [
         'Twitter' => [
             'enabled' => true,
