@@ -1,0 +1,148 @@
+@import '../helpers';
+.navbar{
+	border-bottom:2px solid #00038b;
+}
+.dropbtn {
+	background:none;
+	color: #00038b;
+	padding: 4px;
+	font-size: 12px;
+	cursor: pointer;
+	width: 150px;
+}
+.dropbtn .dropstyle{
+	font-weight: bold;
+}
+/* ---- */
+.dropdown {
+
+	position: relative;
+	display: inline-block;
+}
+.dropdownHidden{
+
+	visibility: hidden;
+}
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	max-width: 150px;
+
+}
+
+	.dropstyle {
+	font-size: 12px;
+	color: black;
+	padding: 9px;
+	white-space: nowrap;
+}
+.dropstyle a{
+	font-size: 14px;
+	color: #00038b;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .dropbtn {
+	border:1px solid #00038b;
+	color: #00038b;
+	padding: 3px;
+	
+}
+.btn-dropbtn {
+	font-size: 12px;
+	width: 140px;
+	background-color: #00038b;
+	color: white;
+	padding: 7px;
+	cursor: pointer;
+	display: block;
+	margin: auto;
+	margin-top: 15px;
+	border: 1px solid #00038b;
+}
+.btn-dropbtn:hover {
+	width: 140px;
+	background: none;
+	color: #00038b;
+	display: block;
+	border: 1px solid #00038b;
+}
+
+div.text-header{
+	color: #252b36;
+	padding-bottom: 15px;
+}
+.btn-header-up {
+	width: 300px;
+	background-color: #717171;
+	color: white;
+	padding: 10px 20px;
+	cursor: pointer;
+	display: block;
+	margin: auto;
+	margin-top: 15px;
+	border-radius: 5px;
+	border:1px solid;
+}
+.btn-header-up:hover {
+	background:none;
+	border:1px solid #717171;
+	color: black;}
+
+.btn-header-do {
+		width: 300px;
+		background-color: #717171;
+		color: white;
+		padding: 10px 20px;
+		cursor: pointer;
+		display: block;
+		margin: auto;
+		margin-top: 15px;
+		border-radius: 5px;
+	border:1px solid;
+	}
+.btn-header-do:hover {
+	background:none;
+	border:1px solid #717171;
+	color: black;}
+
+
+
+div.masthead {
+	position: relative;
+	background: url("/public/img/2noice-bg@2x.png");
+	background-size: 196px;
+	background-repeat: repeat;
+	background-position: center center;
+	padding-bottom: 100px;
+	padding-top: 100px;
+
+}
+
+div.masthead h1 {
+	font-size: 2rem;
+}
+
+@media (min-width: 768px) {
+	div.masthead {
+		padding-top: 12rem;
+		padding-bottom: 12rem;
+	}
+	div.masthead h1 {
+		font-size: 3rem;
+	}
+}
+
+@media (min-width: 768px) {
+	.showcase .showcase-text {
+		padding: 7rem;
+	}
+}
+
+
+
+
