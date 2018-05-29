@@ -1,6 +1,7 @@
 <?php
+
 if ($action == 'home') {
-    $title = 'Yacht parts, spares and consumables, delivered anywhere in the world';
+    $title = '';
 } else {
     $action = 404;
 }

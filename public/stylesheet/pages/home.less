@@ -1,0 +1,64 @@
+@import '../helpers';
+@import '../conf';
+
+div.text-header {
+	color: #252b36;
+	padding-bottom: 15px;
+}
+
+.btn-header-up {
+	width: 300px;
+	background-color: @lightblue;
+	color: white;
+	padding: 10px 20px;
+	cursor: pointer;
+	display: block;
+	margin: 15px auto auto;
+	border-radius: 5px;
+	border: 1px solid;
+	&:hover {
+		background: none;
+		border: 1px solid #717171;
+		color: black;
+	}
+}
+
+.btn-header-do {
+	width: 300px;
+	background-color: #2b6d9a;
+	color: white;
+	padding: 10px 20px;
+	cursor: pointer;
+	display: block;
+	margin: auto;
+	margin-top: 15px;
+	border-radius: 5px;
+	border: 1px solid;
+	&:hover {
+		background: none;
+		border: 1px solid #717171;
+		color: black;
+	}
+}
+
+div.masthead {
+	position: relative;
+	background-size: 196px;
+	background: url("/public/img/2noice-bg@2x.png") repeat center center;
+	padding-bottom: 100px;
+	padding-top: 100px;
+	text-align: center;
+
+	h1 {
+		font-size: 2rem;
+		@media (min-width: 768px) {
+			font-size: 3rem;
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.showcase .showcase-text {
+		padding: 7rem;
+	}
+}

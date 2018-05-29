@@ -1,6 +1,6 @@
 <?php
 $config = [
-    'callback' => 'http://supfile.tk/login',
+    'callback' => 'http://supfile.tk/auth/social',
     'providers' => [
         'Twitter' => [
             'enabled' => true,
@@ -20,8 +20,8 @@ $config = [
         'Google' => [
             'enabled' => true,
             'keys' => [
-                'id' => '329157288654-gsra1n9afce1mve7mbb7kejp6nudopuj.apps.googleusercontent.com',
-                'secret' => 'lxCb8JkN07Oz8m49eg7EfKws']
+                'id' => '329157288654-vk03drjkhl9kh9g9dn5trjpfn5k8h931.apps.googleusercontent.com',
+                'secret' => 'SzIRs_SJtfimZyZ4kZtaNeH-']
         ]
     ]
 ];

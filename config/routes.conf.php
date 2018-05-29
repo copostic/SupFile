@@ -1,4 +1,5 @@
 <?php
 $routes['default'] = 'main';
 $routes['home'] = 'main';
-$routes['login'] = 'login';
+$routes['auth'] = 'auth';
+$routes['404'] = 'main';
