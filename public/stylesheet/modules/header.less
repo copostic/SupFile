@@ -4,7 +4,6 @@
 header {
 	.div();
 	background-color: @darkblue;
-	color: @white;
 	border-bottom: 2px solid #00038b;
 	padding: 15px;
 	position: fixed;
@@ -19,18 +18,16 @@ header {
 		align-items: center;
 		padding: .5rem 1rem;
 	}
-	/* ---- */
 	.dropdown {
 		display: inline-block;
 		position: absolute;
 		right: 20px;
 		top: 0;
-
 		&:hover {
 			.dropbtn {
-				border: 1px solid @marine;
-				color: @white;
-				padding: 3px;
+				border: 1px solid @lightblue;
+				border-radius: 2px;
+				color: @lightblue;
 			}
 			.dropdown-content {
 				display: block;
@@ -44,15 +41,53 @@ header {
 			font-size: 12px;
 			cursor: pointer;
 			width: 150px;
+			padding-left: 15px;
 			span {
 				display: block;
+			}
+			i{
+				width: 15px;
+				height: 15px;
+				display: block;
+				margin: 0;
+				position: absolute;
+				right: 20px;
+				top: 18px;
+				font-size:15px;
 			}
 		}
 		.dropdown-content {
 			display: none;
 			position: absolute;
+			border: 1px solid @lightblue;
+			border-radius: 2px;
+			padding: 5px;
 			background-color: @white;
-			max-width: 150px;
+			min-width: 170px;
+			div#arrow-container {
+				width: 0;
+				height: 10px;
+				display: block;
+				margin: 0;
+				position: absolute;
+				z-index: 2;
+				top: -12px;
+				right: 70px;
+				div#arrow {
+					border: 9px solid transparent;
+					border-top-width: 9px;
+					border-bottom-color: transparent;
+					border-top-width: 0;
+					border-bottom-color: #fff;
+					width: 0;
+					height: 0;
+					font-size: 0;
+					line-height: 0;
+					position: absolute;
+					top: 1px;
+					left: -9px;
+				}
+			}
 			ul {
 				li {
 					list-style: none;
@@ -63,22 +98,27 @@ header {
 				}
 			}
 			.btn-dropbtn {
-				font-size: 12px;
+				display: block;
+				font-size: 14px;
 				width: 140px;
-				background-color: @marine;
+				background-color: #081d4c;
+				border-radius: 2px;
 				color: white;
 				padding: 7px;
 				cursor: pointer;
-				display: block;
 				margin: 15px auto auto;
 				border: 1px solid @marine;
+				text-align: center;
 				&:hover {
-					width: 140px;
 					background: none;
 					color: @marine;
-					display: block;
 					border: 1px solid @marine;
 				}
+			}
+			div {
+				.fs12;
+				padding-top: 5px;
+				text-align: center;
 			}
 		}
 	}

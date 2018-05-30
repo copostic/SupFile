@@ -9,7 +9,6 @@ class DB extends PDO
     private $username;
     private $password;
     private $db;
-    private $query;
 
     public function __construct() {
         try {
@@ -59,10 +58,11 @@ class DB extends PDO
                 err("Error: " . $error_message . " On File: " . $file_error . " Traceback: " . $trace);
             }
 
-            if ($nofetch)
+            if ($nofetch) {
                 return $return;
-            else
+            } else {
                 return $stmt->fetch($fetchtype);
+            }
         }
         return false;
     }
@@ -135,5 +135,20 @@ class DB extends PDO
             return $result;
         }
         return false;
+    }
+
+    public function count($table, $column, $value, $countCol = 'id') {
+        $result = null;
+
+        try {
+            $stmt = parent::prepare("SELECT COUNT( `" . $countCol . "`) FROM $table WHERE $column = ?");
+            //                error_log("UPDATE `".$table."` SET $names WHERE $where = ?");
+            $result = $stmt->execute([$value]);
+            if ($result)
+                $result = $stmt->fetch();
+        } catch (PDOException $e) {
+            error_log("Error: " . $e->getMessage());
+        }
+        return reset($result);
     }
 }

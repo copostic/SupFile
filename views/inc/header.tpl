@@ -16,30 +16,41 @@
 <header>
     <nav class="navbar">
         <a href="/"><img src="/public/img/logo/logo_SUPFile.png" width="80px"></a>
-        <div class="dropdown">
-            <div class="dropbtn">
-                Hello, Sign In
-                <span>Your Account</span>
-            </div>
-            <div class="dropdown-content">
-                <button class="btn-dropbtn">SIGN IN</button>
-                <div>Not registered ?<a href="#">sign up</a></div>
-            </div>
-        </div>
-        <div class="dropdown" style="display: none;">
-            <div class="dropbtn">
-                <div>Hello,
-                    <div>Corentin POSTIC</div>
+        {if !empty($session.connected)}
+            <div class="dropdown">
+                <div class="dropbtn">
+                    <div>Hello, {$session.first_name}
+                        <div>Your account</div>
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                </div>
+                <div class="dropdown-content">
+                    <div id="arrow-container">
+                        <div id="arrow"></div>
+                    </div>
+                    <ul>
+                        <li><a href="">Profile</a></li>
+                        <li><a href="">Upload</a></li>
+                        <li><a href="">Download</a></li>
+                        <li><a href="/auth/logout">Disconnect</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="dropdown-content">
-                <ul>
-                    <li><a href="">Profile</a></li>
-                    <li><a href="">Upload</a></li>
-                    <li><a href="">Download</a></li>
-                    <li><a href="">Disconect</a></li>
-                </ul>
+        {else}
+            <div class="dropdown">
+                <div class="dropbtn">
+                    Hello, Sign In
+                    <span>Your Account</span>
+                    <i class="fa fa-caret-down"></i>
+                </div>
+                <div class="dropdown-content">
+                    <div id="arrow-container">
+                        <div id="arrow"></div>
+                    </div>
+                    <a class="btn-dropbtn" href="/auth/login">SIGN IN</a>
+                    <div>Not registered ? <a href="/auth/login">sign up</a></div>
+                </div>
             </div>
-        </div>
+        {/if}
     </nav>
 </header>

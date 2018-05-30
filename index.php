@@ -15,4 +15,7 @@ $action = $Router->getAction();
 $page = $Router->getPage();
 $smarty = new Smarty();
 $db = new DB();
+
+$smarty->assign('session', $_SESSION);
+
 require_once CONTROLLERS . $Router->getController() . '.php';
