@@ -49,7 +49,7 @@
                             <img src="/public/img/cloud-2044822_640.png" width="120px">
                         </div>
                         <h3>Encryption</h3>
-                        <p class="lead mb-0">End-to-end encryption or increases the security standard for file sharing. </p>
+                        <p class="lead mb-0">End-to-end encryption increases the security standard for file sharing. </p>
                     </div>
                 </div>
             </div>

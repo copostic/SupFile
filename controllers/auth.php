@@ -23,11 +23,11 @@ if (!empty($page)) {
                 $storage->set('provider', null);
                 if ($adapter->isConnected()) {
                     $profile = $adapter->getUserProfile();
-                    $userExist = $db->count('users', 'email', $profile->email);
+                    $userExist = $user->checkIfExists($profile->email);
                     if ($userExist) {
-                        $result = $db->result('SELECT first_name, last_name, password FROM users WHERE email = ?', [$profile->email]);
+                        $result = $user->getByEmail($profile->email);
                     } else {
-                        $result = $db->result("INSERT INTO users (email, first_name, last_name, available_space, total_space) VALUES (?,?,?,?,30,30)", [$profile->email, $profile->firstName, $profile->lastName]);
+                        $result = $user->createOnDB($profile->email, $profile->firstName, $profile->lastName);
                     }
                     $_SESSION['connected'] = true;
                     $_SESSION['email'] = $profile->email;
@@ -49,19 +49,7 @@ if (!empty($page)) {
 
     } elseif ($page == 'login') {
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['email']) && !empty($_POST['password'])) {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $userExist = $db->count('users', 'email', $email);
-            if ($userExist) {
-                $result = $db->result('SELECT first_name, last_name, password FROM users WHERE email = ?', [$email]);
-                $encrypted_password = $result['password'] ?? '';
-                if (password_verify($password, $encrypted_password)) {
-                    $_SESSION['connected'] = true;
-                    $_SESSION['email'] = $email;
-                    $_SESSION['first_name'] = $result['first_name'] ?? 'John';
-                    $_SESSION['last_name'] = $result['last_name'] ?? 'Doe';
-                }
-            }
+            $result = $user->localLogin($_POST['email'], $_POST['password']);
         }
 
     } elseif ($page == 'register') {
@@ -69,33 +57,13 @@ if (!empty($page)) {
             $email = $_POST['email'];
             $password = $_POST['password'];
             $password_verify = $_POST['password_verify'];
-            $first_name = $_POST['first_name'] ?? '';
-            $last_name = $_POST['last_name'] ?? '';
-            $userExist = $db->count('users', 'email', $email);
-            if ($password == $password_verify) {
-                if (!$userExist) {
-                    $encrypted_password = password_hash($password, PASSWORD_ARGON2I);
-                    $result = $db->result("INSERT INTO users (email, password, first_name, last_name, available_space, total_space) VALUES (?,?,?,?,30,30)", [$email, $encrypted_password, $first_name, $last_name]);
-                    if ($result) {
-                        $_SESSION['connected'] = true;
-                        $_SESSION['email'] = $email;
-                        $_SESSION['first_name'] = $result['first_name'] ?? 'John';
-                        $_SESSION['last_name'] = $result['last_name'] ?? 'Doe';
-                        $result = ['success' => 'true', 'message' => 'User successfully created!'];
-                    } else {
-                        $result = ['success' => 'false', 'message' => 'An error occurred'];
-                    }
-                } else {
-                    $result = ['success' => 'false', 'message' => 'User already exist'];
-                }
-            } else {
-                $result = ['success' => 'false', 'message' => 'Password not equals'];
-            }
+            $firstName = $_POST['first_name'] ?? '';
+            $lastName = $_POST['last_name'] ?? '';
+            $result = $user->localRegister($email, $password, $password_verify, $firstName, $lastName);
+
         } else {
             $result = ['success' => 'false', 'message' => 'You must fill all the fields'];
         }
-        $smarty->assign('result', json_encode($result));
-
     } elseif ($page == 'logout') {
         $hybridauth = new Hybridauth($config);
         $hybridauth->disconnectAllAdapters();
@@ -107,6 +75,11 @@ if (!empty($page)) {
     header('Location: /auth/login');
 }
 
-$smarty->display(VIEWS . 'inc/header.tpl');
-$smarty->display(VIEWS . 'account/login.tpl');
-$smarty->display(VIEWS . 'inc/footer.tpl');
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $smarty->display(VIEWS . 'inc/header.tpl');
+    $smarty->display(VIEWS . 'account/login.tpl');
+    $smarty->display(VIEWS . 'inc/footer.tpl');
+} else {
+    $smarty->assign('result', json_encode($result));
+    echo json_encode($result);
+}

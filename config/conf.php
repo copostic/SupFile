@@ -1,10 +1,8 @@
 <?php
 if (!defined('ENV'))
     define('ENV', getenv('SF_ENV'));
-define('LIB', 'libraries/');
-define('CACHE', 'cache/');
-define('HELPERS', 'helpers/');
-define('MODELS', 'models/');
+define('LIB', PATH . 'libraries/');
+define('MODELS', PATH . 'models/');
 define('VIEWS', PATH . 'views/');
 define('CONTROLLERS', PATH . 'controllers/');
 

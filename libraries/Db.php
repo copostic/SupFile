@@ -55,7 +55,7 @@ class DB extends PDO
                 $error_message = $e->getMessage();
                 $file_error = $e->getFile();
                 $trace = $e->getTraceAsString();
-                err("Error: " . $error_message . " On File: " . $file_error . " Traceback: " . $trace);
+                error_log("Error: " . $error_message . " On File: " . $file_error . " Traceback: " . $trace);
             }
 
             if ($nofetch) {

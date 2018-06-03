@@ -1,10 +1,12 @@
 <!-- Footer -->
-<section id="footer">
+<footer id="footer">
     <div class="container margcontainer">
-        <div class="row text-center text-xs-center text-sm-left text-md-left">
+        <div class="row">
             <div class="col-xs-12 col-sm-4 col-md-4">
                 <ul class="list-unstyled quick-links">
-                    <li><a href="javascript:void();"><img src="/public/img/logo/logo_SUPFile.png" width="150px"></a></li>
+                    <li>
+                        <a href="/"><img src="/public/img/logo/logo_SUPFile.png" width="150px"></a>
+                    </li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-4 col-md-4">
@@ -26,21 +28,28 @@
                     <li class="list-inline-item"><a href=""><i class="fa fa-twitter"></i></a></li>
                     <li class="list-inline-item"><a href=""><i class="fa fa-instagram"></i></a></li>
                     <li class="list-inline-item"><a href=""><i class="fa fa-google-plus"></i></a></li>
-                    <li class="list-inline-item"><a href="" target="_blank"><i class="fa fa-envelope"></i></a></li>
+                    <li class="list-inline-item"><a href="" target="_blank"><i class="fa fa-envelope"></i></a>
+                    </li>
                 </ul>
             </div>
-            </hr>
+            <hr>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center" 	color=" #717171;">
-                <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux t0</p>
-                <p class="h6"><a class="text-green ml-2" target="_blank">SUPFile</a> &copy 2018 -  All right Reversed.</p>
+            <div>
+                <p>SupFile est un site créé par des étudiants de SUPINFO Nice et n'a en aucun cas un but commercial. Nous ne garantissons en aucun cas l'intégrité de nos services. En plus, c'est hebergé sur un Raspberry Pi.</p>
+                <p class="h6">
+                    <a class="text-green ml-2" target="_blank">SUPFile</a> &copy 2018 - All right Reversed.
+                </p>
             </div>
-            </hr>
+            <hr>
         </div>
     </div>
-</section>
+</footer>
 <script type="text/javascript" src="/public/js/vendor/jquery-3.3.1.min.js"></script>
-<script src="/public/js/main.js"></script>
+<script type="text/javascript" src="/public/js/main.js"></script>
+<script type="text/javascript">
+    var uuid = '{$session.uuid|default:''}';
+</script>
+<script type="text/javascript" src="/public/js/explorer.js"></script>
 </body>
 </html>

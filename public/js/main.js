@@ -13,13 +13,20 @@ var loginTest = {
 
 $('#sendForm').on('click', function(e) {
     console.log('Sent');
-    var $form = $(this);
     e.preventDefault();
     $.ajax({
         type: 'POST',
         url: 'http://supfile.tk/auth/login',
         data: loginTest,
         success: function(data) {
+            data = JSON.parse(data);
+            if(data.success){
+                window.location.href = '/';
+            } else{
+                $('div#errorMessage').html(data.message);
+            }
+        },
+        error: function(data) {
             console.log(data);
         }
     })

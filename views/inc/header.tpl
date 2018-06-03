@@ -6,10 +6,13 @@
     <meta name="description" content="Welcome to the SUPFile homepage!">
     <title>Home | SUPFile</title>
 
-    <!-- Feuilles CSS -->
     <link href="/public/stylesheet/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="/public/stylesheet/style.css" rel="stylesheet">
     <link href="/public/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/public/stylesheet/pages/explorer.css" rel="stylesheet" />
+{*
+    <base href="http://supfile.tk">
+*}
 
 </head>
 <body>
