@@ -1,0 +1,480 @@
+.fs30 {
+  font-size: 30px;
+}
+.fs29 {
+  font-size: 29px;
+}
+.fs28 {
+  font-size: 28px;
+}
+.fs27 {
+  font-size: 27px;
+}
+.fs26 {
+  font-size: 26px;
+}
+.fs25 {
+  font-size: 25px;
+}
+.fs24 {
+  font-size: 24px;
+}
+.fs23 {
+  font-size: 23px;
+}
+.fs22 {
+  font-size: 22px;
+}
+.fs21 {
+  font-size: 21px;
+}
+.fs20 {
+  font-size: 20px;
+}
+.fs18 {
+  font-size: 18px;
+}
+.fs16 {
+  font-size: 16px;
+}
+.fs15 {
+  font-size: 15px;
+}
+.fs14 {
+  font-size: 14px;
+}
+.fs13 {
+  font-size: 13px;
+}
+.fs12 {
+  font-size: 12px;
+}
+.fs11 {
+  font-size: 11px;
+}
+.fs10 {
+  font-size: 10px;
+}
+.upper {
+  text-transform: uppercase;
+}
+.underline {
+  text-decoration: underline;
+}
+.italic {
+  font-style: italic;
+}
+section#fileExplorer {
+  background-color: #fefefe;
+  font: 14px normal Arial, Helvetica, sans-serif;
+  /* Chrome, Safari, Opera */
+  /* Standard syntax */
+  /*-------------------------
+			Icons
+	-------------------------*/
+}
+section#fileExplorer div.filemanager {
+  width: 95%;
+  position: relative;
+  margin: 100px auto 50px;
+  padding-bottom: 50px;
+}
+@media all and (max-width: 965px) {
+  section#fileExplorer div.filemanager {
+    margin: 30px auto 0;
+    padding: 1px;
+  }
+}
+section#fileExplorer div.filemanager div.explorer-header {
+  width: 100%;
+  height: auto;
+  position: relative;
+  display: block;
+  margin: 0;
+  border-bottom: 1px solid #c8c8c8;
+}
+section#fileExplorer div.filemanager div.explorer-header div.breadcrumbs {
+  width: 100%;
+  height: auto;
+  position: relative;
+  display: block;
+  margin: 0;
+  display: inline-block;
+  width: 63%;
+  color: #252b36;
+  margin-left: 20px;
+  font-size: 24px;
+  line-height: 35px;
+  border-bottom: 1px solid #c8c8c8;
+  padding-bottom: 7px;
+}
+section#fileExplorer div.filemanager div.explorer-header div.breadcrumbs a:link,
+section#fileExplorer div.filemanager div.explorer-header div.breadcrumbs a:visited {
+  color: #252b36;
+  text-decoration: none;
+}
+section#fileExplorer div.filemanager div.explorer-header div.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+section#fileExplorer div.filemanager div.explorer-header div.breadcrumbs img {
+  width: 12px;
+  padding-bottom: 4px;
+}
+section#fileExplorer div.filemanager div.explorer-header div.controls {
+  width: 100%;
+  height: auto;
+  position: relative;
+  display: block;
+  margin: 0;
+  display: inline-block;
+  width: 35%;
+}
+section#fileExplorer div.filemanager div.explorer-header div.controls div.actions {
+  display: inline-block;
+}
+section#fileExplorer div.filemanager div.explorer-header div.controls div.actions button {
+  padding: 3px 6px;
+  margin: 0 3px;
+  border: none;
+  background: none;
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+  color: #787878;
+}
+section#fileExplorer div.filemanager div.explorer-header div.controls div.actions button:hover {
+  background: #cdcdcd;
+  color: black;
+  border-radius: 50%;
+}
+section#fileExplorer div.filemanager div.explorer-header div.controls div.search {
+  display: inline-block;
+  cursor: pointer;
+  right: 0;
+  font-size: 17px;
+  color: #252b36;
+  width: 250px;
+  height: 40px;
+}
+section#fileExplorer div.filemanager div.explorer-header div.controls div.search i.fa.fa-search {
+  position: absolute;
+  right: 0;
+  top: 8px;
+}
+section#fileExplorer div.filemanager div.explorer-header div.controls div.search input[type=search] {
+  border-radius: 2px;
+  color: #252b36;
+  background-color: rgba(0, 0, 0, 0.04);
+  width: 250px;
+  height: 34px;
+  padding-left: 20px;
+  text-decoration-color: #fcfcfc;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  outline: none;
+  border: none;
+  -webkit-appearance: none;
+}
+section#fileExplorer div.filemanager ul.data {
+  margin-top: 60px;
+}
+section#fileExplorer div.filemanager ul.data.animated {
+  animation: showSlowlyElement 700ms;
+  -webkit-animation: showSlowlyElement 700ms;
+}
+section#fileExplorer div.filemanager ul.data li {
+  border-radius: 3px;
+  background-color: #f6f6f6;
+  width: 307px;
+  height: 118px;
+  list-style-type: none;
+  margin: 10px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  padding: 0.3em;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: 0.3s background-color;
+}
+@media all and (max-width: 965px) {
+  section#fileExplorer div.filemanager ul.data li {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+section#fileExplorer div.filemanager ul.data li:hover,
+section#fileExplorer div.filemanager ul.data li.active {
+  background-color: #6e6e7a;
+}
+section#fileExplorer div.filemanager ul.data li:hover .name,
+section#fileExplorer div.filemanager ul.data li.active .name {
+  color: #fefefe;
+}
+section#fileExplorer div.filemanager ul.data li a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+section#fileExplorer div.filemanager ul.data li .name {
+  color: #616161;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+  width: 150px;
+  white-space: nowrap;
+  display: inline-block;
+  position: absolute;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  top: 40px;
+}
+section#fileExplorer div.filemanager ul.data li .details {
+  color: #b6c1c9;
+  font-size: 13px;
+  font-weight: 400;
+  width: 55px;
+  height: 10px;
+  top: 64px;
+  white-space: nowrap;
+  position: absolute;
+  display: inline-block;
+}
+section#fileExplorer div.filemanager div.nothingfound {
+  background-color: #E6E6F2;
+  width: 23em;
+  height: 21em;
+  margin: 0 auto;
+  display: none;
+  font-family: Arial, sans-serif;
+  animation: showSlowlyElement 700ms;
+  -webkit-animation: showSlowlyElement 700ms;
+}
+section#fileExplorer div.filemanager div.nothingfound div.nofiles {
+  margin: 30px auto;
+  top: 3em;
+  border-radius: 50%;
+  position: relative;
+  background-color: #f03434;
+  width: 11em;
+  height: 11em;
+  line-height: 11.4em;
+}
+section#fileExplorer div.filemanager div.nothingfound div.nofiles i.fa.fa-exclamation {
+  color: #ffffff;
+  font-size: 9em;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20px;
+}
+section#fileExplorer div.filemanager div.nothingfound span {
+  margin: 0 auto auto 6.8em;
+  color: #252b36;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  height: 13px;
+  position: relative;
+  top: 2em;
+}
+@-webkit-keyframes showSlowlyElement {
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  0% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+@keyframes showSlowlyElement {
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  0% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+section#fileExplorer .icon {
+  font-size: 23px;
+}
+section#fileExplorer .icon.folder {
+  display: inline-block;
+  margin: 1em;
+  background-color: transparent;
+  overflow: hidden;
+}
+section#fileExplorer .icon.folder:before {
+  content: '';
+  float: left;
+  background-color: #7ba1ad;
+  width: 1.5em;
+  height: 0.45em;
+  margin-left: 0.07em;
+  margin-bottom: -0.07em;
+  border-top-left-radius: 0.1em;
+  border-top-right-radius: 0.1em;
+  box-shadow: 1.25em 0.25em 0 0 #7ba1ad;
+}
+section#fileExplorer .icon.folder:after {
+  content: '';
+  float: left;
+  clear: left;
+  background-color: #a0d4e4;
+  width: 3em;
+  height: 2.25em;
+  border-radius: 0.1em;
+}
+section#fileExplorer .icon.folder.full:before {
+  height: 0.55em;
+}
+section#fileExplorer .icon.folder.full:after {
+  height: 2.15em;
+  box-shadow: 0 -0.12em 0 0 #ffffff;
+}
+section#fileExplorer .icon.file {
+  width: 2.5em;
+  height: 3em;
+  line-height: 3em;
+  text-align: center;
+  border-radius: 0.25em;
+  color: #FFF;
+  display: inline-block;
+  margin: 0.9em 1.2em 0.8em 1.3em;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 1.74em -2.1em 0 0 #A4A7AC inset;
+}
+section#fileExplorer .icon.file:first-line {
+  font-size: 13px;
+  font-weight: 700;
+}
+section#fileExplorer .icon.file:after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  border-width: 0;
+  border-bottom: 2.6em solid #DADDE1;
+  border-right: 2.22em solid rgba(0, 0, 0, 0);
+  top: -34.5px;
+  right: -4px;
+}
+section#fileExplorer .icon.file.f-avi,
+section#fileExplorer .icon.file.f-flv,
+section#fileExplorer .icon.file.f-mkv,
+section#fileExplorer .icon.file.f-mov,
+section#fileExplorer .icon.file.f-mpeg,
+section#fileExplorer .icon.file.f-mpg,
+section#fileExplorer .icon.file.f-mp4,
+section#fileExplorer .icon.file.f-m4v,
+section#fileExplorer .icon.file.f-wmv {
+  box-shadow: 1.74em -2.1em 0 0 #7e70ee inset;
+}
+section#fileExplorer .icon.file.f-avi:after,
+section#fileExplorer .icon.file.f-flv:after,
+section#fileExplorer .icon.file.f-mkv:after,
+section#fileExplorer .icon.file.f-mov:after,
+section#fileExplorer .icon.file.f-mpeg:after,
+section#fileExplorer .icon.file.f-mpg:after,
+section#fileExplorer .icon.file.f-mp4:after,
+section#fileExplorer .icon.file.f-m4v:after,
+section#fileExplorer .icon.file.f-wmv:after {
+  border-bottom-color: #5649c1;
+}
+section#fileExplorer .icon.file.f-mp2,
+section#fileExplorer .icon.file.f-mp3,
+section#fileExplorer .icon.file.f-m3u,
+section#fileExplorer .icon.file.f-wma,
+section#fileExplorer .icon.file.f-xls,
+section#fileExplorer .icon.file.f-xlsx {
+  box-shadow: 1.74em -2.1em 0 0 #5bab6e inset;
+}
+section#fileExplorer .icon.file.f-mp2:after,
+section#fileExplorer .icon.file.f-mp3:after,
+section#fileExplorer .icon.file.f-m3u:after,
+section#fileExplorer .icon.file.f-wma:after,
+section#fileExplorer .icon.file.f-xls:after,
+section#fileExplorer .icon.file.f-xlsx:after {
+  border-bottom-color: #448353;
+}
+section#fileExplorer .icon.file.f-doc,
+section#fileExplorer .icon.file.f-docx,
+section#fileExplorer .icon.file.f-psd {
+  box-shadow: 1.74em -2.1em 0 0 #03689b inset;
+}
+section#fileExplorer .icon.file.f-doc:after,
+section#fileExplorer .icon.file.f-docx:after,
+section#fileExplorer .icon.file.f-psd:after {
+  border-bottom-color: #2980b9;
+}
+section#fileExplorer .icon.file.f-gif,
+section#fileExplorer .icon.file.f-jpg,
+section#fileExplorer .icon.file.f-jpeg,
+section#fileExplorer .icon.file.f-pdf,
+section#fileExplorer .icon.file.f-png {
+  box-shadow: 1.74em -2.1em 0 0 #e15955 inset;
+}
+section#fileExplorer .icon.file.f-gif:after,
+section#fileExplorer .icon.file.f-jpg:after,
+section#fileExplorer .icon.file.f-jpeg:after,
+section#fileExplorer .icon.file.f-pdf:after,
+section#fileExplorer .icon.file.f-png:after {
+  border-bottom-color: #c6393f;
+}
+section#fileExplorer .icon.file.f-deb,
+section#fileExplorer .icon.file.f-dmg,
+section#fileExplorer .icon.file.f-gz,
+section#fileExplorer .icon.file.f-rar,
+section#fileExplorer .icon.file.f-zip,
+section#fileExplorer .icon.file.f-7z {
+  box-shadow: 1.74em -2.1em 0 0 #867c75 inset;
+}
+section#fileExplorer .icon.file.f-deb:after,
+section#fileExplorer .icon.file.f-dmg:after,
+section#fileExplorer .icon.file.f-gz:after,
+section#fileExplorer .icon.file.f-rar:after,
+section#fileExplorer .icon.file.f-zip:after,
+section#fileExplorer .icon.file.f-7z:after {
+  border-bottom-color: #685f58;
+}
+section#fileExplorer .icon.file.f-html,
+section#fileExplorer .icon.file.f-rtf,
+section#fileExplorer .icon.file.f-xml,
+section#fileExplorer .icon.file.f-xhtml {
+  box-shadow: 1.74em -2.1em 0 0 #a94bb7 inset;
+}
+section#fileExplorer .icon.file.f-html:after,
+section#fileExplorer .icon.file.f-rtf:after,
+section#fileExplorer .icon.file.f-xml:after,
+section#fileExplorer .icon.file.f-xhtml:after {
+  border-bottom-color: #d65de8;
+}
+section#fileExplorer .icon.file.f-js {
+  box-shadow: 1.74em -2.1em 0 0 #d0c54d inset;
+}
+section#fileExplorer .icon.file.f-js:after {
+  border-bottom-color: #a69f4e;
+}
+section#fileExplorer .icon.file.f-css,
+section#fileExplorer .icon.file.f-saas,
+section#fileExplorer .icon.file.f-scss {
+  box-shadow: 1.74em -2.1em 0 0 #44afa6 inset;
+}
+section#fileExplorer .icon.file.f-css:after,
+section#fileExplorer .icon.file.f-saas:after,
+section#fileExplorer .icon.file.f-scss:after {
+  border-bottom-color: #30837c;
+}
+@media (max-width: 1024px) {
+  section#fileExplorer #bsaHolder,
+  section#fileExplorer footer {
+    display: none;
+  }
+}
+/*# sourceMappingURL=explorer.css.map */

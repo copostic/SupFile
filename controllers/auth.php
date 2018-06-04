@@ -5,7 +5,7 @@ use Hybridauth\Hybridauth;
 use Hybridauth\HttpClient;
 use Hybridauth\Storage\Session;
 
-$vue = $page ?? 'login';
+$view = $page ?? 'login';
 if (!empty($page)) {
     if ($page == 'social') {
         try {
@@ -77,7 +77,7 @@ if (!empty($page)) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $smarty->display(VIEWS . 'inc/header.tpl');
-    $smarty->display(VIEWS . 'account/login.tpl');
+    $smarty->display(VIEWS . 'account/' . $view . '.tpl');
     $smarty->display(VIEWS . 'inc/footer.tpl');
 } else {
     $smarty->assign('result', json_encode($result));

@@ -18,7 +18,7 @@
 <body>
 <header>
     <nav class="navbar">
-        <a href="/"><img src="/public/img/logo/logo_SUPFile.png" width="80px"></a>
+        <a href="/"><img src="/public/img/logo/logo_supfile_blanc.png" width="80px"></a>
         {if !empty($session.connected)}
             <div class="dropdown">
                 <div class="dropbtn">
@@ -51,7 +51,7 @@
                         <div id="arrow"></div>
                     </div>
                     <a class="btn-dropbtn" href="/auth/login">SIGN IN</a>
-                    <div>Not registered ? <a href="/auth/login">sign up</a></div>
+                    <div>Not registered ? <a href="/auth/register">sign up</a></div>
                 </div>
             </div>
         {/if}

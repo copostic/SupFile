@@ -5,7 +5,7 @@
             <div class="col-xs-12 col-sm-4 col-md-4">
                 <ul class="list-unstyled quick-links">
                     <li>
-                        <a href="/"><img src="/public/img/logo/logo_SUPFile.png" width="150px"></a>
+                        <a href="/"><img src="/public/img/logo/logo_supfile_blanc.png" width="150px"></a>
                     </li>
                 </ul>
             </div>
