@@ -42,7 +42,7 @@ if (!empty($page)) {
                 $adapter->disconnect();
                 $hybridauth->disconnectAllAdapters();
             }
-            //HttpClient\Util::redirect('http://supfile.tk');
+            HttpClient\Util::redirect('/explorer');
         } catch (Exception $e) {
             echo $e->getMessage();
         }
@@ -69,7 +69,7 @@ if (!empty($page)) {
         $hybridauth->disconnectAllAdapters();
         unset($_SESSION);
         session_destroy();
-        header('Location: /');
+        header('Location: /explorer');
     }
 } else {
     header('Location: /auth/login');
