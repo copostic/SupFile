@@ -8,11 +8,8 @@
 
     <link href="/public/stylesheet/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="/public/stylesheet/style.css" rel="stylesheet">
-    <link href="/public/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/public/stylesheet/pages/explorer.css" rel="stylesheet" />
-{*
-    <base href="http://supfile.tk">
-*}
+    <link href="/public/stylesheet/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    {*<base href="http://supfile.tk">*}
 
 </head>
 <body>
