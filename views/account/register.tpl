@@ -28,10 +28,14 @@
                         <a href="/auth/social?provider=Google" class="social-signin google">Log in with Google+</a>
                     </li>
                 </ul>
+
+                </a>
             </div>
+
         </div>
+
+
     </div>
-
-
+    </div>
 
 </section>
