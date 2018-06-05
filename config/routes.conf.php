@@ -4,3 +4,6 @@ $routes['home'] = 'main';
 $routes['auth'] = 'auth';
 $routes['404'] = 'main';
 $routes['explorer'] = 'explorer';
+$routes['account'] = 'account';
+
+

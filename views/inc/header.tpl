@@ -32,7 +32,7 @@
                         <div id="arrow"></div>
                     </div>
                     <ul>
-                        <li><a href="">Profile</a></li>
+                        <li><a href="/account/information">Profile</a></li>
                         <li><a href="">Upload</a></li>
                         <li><a href="">Download</a></li>
                         <li><a href="/auth/logout">Disconnect</a></li>
