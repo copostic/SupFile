@@ -22,7 +22,7 @@ section#fileExplorer {
 			div.breadcrumbs {
 				.div();
 				display: inline-block;
-				width: 65%;
+				width: 60%;
 				color: @darkblue;
 				margin-left: 20px;
 				font-size: 24px;
@@ -42,11 +42,19 @@ section#fileExplorer {
 					width: 12px;
 					padding-bottom: 4px;
 				}
+				div.breadcrumb-rename{
+					padding-left: 10px;
+					display: none;
+					button#validateRename{
+						border: none;
+						background: transparent;
+					}
+				}
 			}
 			div.controls {
 				.div();
 				display: inline-block;
-				width: 35%;
+				width: 38%;
 				div.actions {
 					display: inline-block;
 					button {

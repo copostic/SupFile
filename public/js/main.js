@@ -1,29 +1,17 @@
-var registerTest = {
-    'email': 'copostic@hotmail.fr',
-    'password': 'test',
-    'password_verify': 'test',
-    'first_name': 'Corentin',
-    'last_name': 'POSTIC'
-};
-
-var loginTest = {
-    'email': 'copostic@hotmail.fr',
-    'password': 'test'
-};
-
-$('#sendForm').on('click', function(e) {
-    console.log('Sent');
+$('form#login, form#register').on('submit', function(e) {
     e.preventDefault();
+    var url = $(this).attr('id') === 'login' ? '/auth/login' : '/auth/register';
+    var data = $(this).serialize();
     $.ajax({
         type: 'POST',
-        url: 'http://supfile.tk/auth/login',
-        data: loginTest,
+        url: url,
+        data: data,
         success: function(data) {
             data = JSON.parse(data);
             if(data.success){
-                window.location.href = '/';
+                window.location.href = '/explorer';
             } else{
-                $('div#errorMessage').html(data.message);
+                $('div#errorMessage').show().html(data.message);
             }
         },
         error: function(data) {

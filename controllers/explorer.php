@@ -54,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $action = $_POST['action'] ?? null;
     $path = $_POST['path'] ?? null;
     $newName = $_POST['newName'] ?? null;
+    $folderName = $_POST['folderName'] ?? null;
     $checkPath = explode('/', $path);
     if ($checkPath[0] == 'files' && $checkPath[1] == $_SESSION['uuid'] && !in_array('..', $checkPath) && !in_array('.', $checkPath)) {
         switch ($action) {
@@ -98,12 +99,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $result = ['success' => 'false', 'message' => 'File doesn\'t exist.'];
                 }
                 break;
+
+            case 'add':
+                $count = 1;
+                $fullDir = PATH . $path . '/' . $folderName;
+                if (file_exists($fullDir) && is_dir($fullDir)) {
+                    if (!file_exists($fullDir . ' (1)')) {
+                        mkdir($fullDir . ' (1)', 0777, true);
+                    } else {
+                        while (file_exists($fullDir . ' (' . $count . ')')) {
+                            $count += 1;
+                        }
+                        mkdir($fullDir . ' (' . $count . ')', 0777, true);
+                    }
+                } else {
+                    mkdir($fullDir, 0777, true);
+                }
+                if ($result)
+                    $result = ['success' => 'true', 'message' => 'Directory successfully created.'];
+                else
+                    $result = ['success' => 'true', 'message' => 'Error while creating the directory.'];
+                break;
+
+
         }
     }
     $userDirectory = 'files/' . $_SESSION['uuid'];
     if (!file_exists($userDirectory)) {
         mkdir($userDirectory);
-        copy(PATH . '/files/example/README.txt', $userDirectory . 'README.txt');
+        copy(PATH . '/files/example/README.txt', $userDirectory . '/README.txt');
     }
     $response = scan($userDirectory);
 

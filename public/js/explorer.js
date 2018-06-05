@@ -150,13 +150,32 @@ breadcrumbs.on('click', 'a', function(e) {
 
 
 $('div.actions > button', $mainSection).on('click', function() {
-    var $file = $fileList.find('li.active');
-    if ($file.length) {
+    var $file = $fileList.find('li.active'),
+        action = $(this).attr('id'),
+        folderName = '';
+    if (action === 'add') {
+        $('div.breadcrumb-rename', breadcrumbs).first().css('display', 'inline-block');
+        $('button#validateRename').on('click', function() {
+            folderName = $('div.breadcrumb-rename > input', breadcrumbs).val();
+            console.log(folderName);
+            if (folderName !== '') {
+                $.post('http://supfile.tk/explorer', {
+                    action: action,
+                    path: currentPath,
+                    folderName: folderName
+                }, window.location.reload());
+            } else {
+                $("#toast").html('Please type a file name.').fadeIn().delay(1500).fadeOut();
+                $('div.breadcrumb-rename', breadcrumbs).first().hide();
+            }
+        });
+    }
+
+    else if ($file.length) {
         var path = $file.find('a').attr('href'),
             fileName = $file.find('span.name').text(),
             fileExtension = $file.find('a').data('extension'),
             isFile = $file.hasClass('files'),
-            action = $(this).attr('id'),
             validFileName = new RegExp(/^[\w\-]*[\.][a-z]*$/i),
             validFolderName = new RegExp(/^[\w\-]*$/i),
             resultMessage = '';
@@ -406,7 +425,19 @@ function render(data) {
                 itemsLength = 'Empty';
             }
 
-            var folder = $('<li class="folders"><a href="' + f.path + '" title="' + f.path + '" class="folders">' + icon + '<span class="name">' + name + '</span> <span class="details">' + itemsLength + '</span></a></li>');
+            var folder = $('<li class="folders">' +
+                '<a href="' + f.path + '" title="' + f.path + '" class="folders">' + icon +
+                '<span class="name">' + name + '</span> ' +
+                '<span class="details">' + itemsLength + '</span>' +
+                '<div class="rename">' +
+                '<input type="text"> ' +
+                '<div class="right-buttons">' +
+                '<button id="cancelRename"><i class="fa fa-close"></i></button>' +
+                '<button id="validateRename"><i class="fa fa-check"></i></button>' +
+                '</div>' +
+                '</div> ' +
+                '</a>' +
+                '</li>');
             folder.appendTo($fileList);
         });
 
@@ -447,7 +478,12 @@ function render(data) {
     // Generate the breadcrumbs
 
     var url = '';
-
+    var renameFolder = '<div class="breadcrumb-rename">\n' +
+        '                    <img src="/public/img/right-chevron.png">\n' +
+        '                    <input type="text" title="Name of new folder">\n' +
+        '                    <button id="validateRename">\n' +
+        '                        <i class="fa fa-check"></i></button>\n' +
+        '                </div>';
     if ($fileExplorer.hasClass('searching')) {
 
         url = '<span>Search results: </span>';
@@ -470,11 +506,11 @@ function render(data) {
             else {
                 url += '<span class="folderName">' + name[name.length - 1] + '</span>';
             }
-
         });
     }
 
-    breadcrumbs.text('').append(url);
+
+    breadcrumbs.text('').append(url).append(renameFolder);
 
 
     // Show the generated elements
