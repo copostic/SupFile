@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="description" content="Welcome to the SUPFile homepage!">
-    <title>Home | SUPFile</title>
+    <title>{$title|default:'Home'} | SUPFile</title>
 
     <link href="/public/stylesheet/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="/public/stylesheet/style.css" rel="stylesheet">

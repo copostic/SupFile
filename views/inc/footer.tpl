@@ -1,4 +1,4 @@
-<!-- Footer -->
+<div id="toast"></div>
 <footer id="footer">
     <div class="container margcontainer">
         <div class="row">

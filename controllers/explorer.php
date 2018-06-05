@@ -1,5 +1,7 @@
 <?php
 
+require_once LIB . 'mime_type_lib.php';
+
 /**
  * @param $directory
  * @return array
@@ -33,22 +35,48 @@ function scan($directory) {
     return $files;
 }
 
-if(empty($_SESSION['connected'])){
-   header('Location: /');
-   exit();
+
+function rmdir_recursive($dir) {
+    foreach (scandir($dir) as $file) {
+        if ('.' === $file || '..' === $file) continue;
+        if (is_dir("$dir/$file")) rmdir_recursive("$dir/$file");
+        else unlink("$dir/$file");
+    }
+    rmdir($dir);
+}
+
+if (empty($_SESSION['connected'])) {
+    header('Location: /');
+    exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $action = $_POST['action'] ?? null;
     $path = $_POST['path'] ?? null;
-    $newName = $_POST['new_name'] ?? null;
+    $newName = $_POST['newName'] ?? null;
     $checkPath = explode('/', $path);
     if ($checkPath[0] == 'files' && $checkPath[1] == $_SESSION['uuid'] && !in_array('..', $checkPath) && !in_array('.', $checkPath)) {
         switch ($action) {
+            case 'download':
+                if (file_exists($path)) {
+                    $type = get_file_mime_type($path);
+                    header("Pragma: public");
+                    header("Expires: -1");
+                    header('Cache-Control: must-revalidate');
+                    header('Content-Type: ' . $type);
+                    header('Content-Disposition: attachment; filename="' . end($checkPath) . '"');
+                    header('Content-Length: ' . filesize($path));
+                    if (ob_get_level()) ob_end_clean();
+                    return readfile($path);
+                } else {
+                    $result = ['success' => 'false', 'message' => 'File doesn\'t exist'];
+                }
+                break;
+
             case 'rename':
                 if (file_exists($path)) {
                     array_pop($checkPath);
-                    $result = rename($path, implode('/', $checkPath) . $newName);
+                    $result = rename($path, implode('/', $checkPath) . '/' . $newName);
                     if ($result)
                         $result = ['success' => 'true', 'message' => 'File successfully renamed'];
                 } else
@@ -57,11 +85,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             case 'delete':
                 if (file_exists($path)) {
                     if (is_dir($path)) {
-                        $result = rmdir($path);
-                        if ($result)
-                            $result = ['success' => 'true', 'message' => 'Directory successfully deleted.'];
-                        else
-                            $result = ['success' => 'false', 'message' => 'Error while deleting directory.'];
+                        rmdir_recursive($path);
+                        $result = ['success' => 'true', 'message' => 'Directory successfully deleted.'];
                     } else {
                         $result = unlink($path);
                         if ($result)
@@ -91,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         "items" => $response
     ));
 } else {
-
+    $smarty->assign('title', 'Explorer');
     $smarty->display(VIEWS . 'inc/header.tpl');
     $smarty->display(VIEWS . 'account/explorer.tpl');
     $smarty->display(VIEWS . 'inc/footer.tpl');

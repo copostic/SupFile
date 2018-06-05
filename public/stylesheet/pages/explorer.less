@@ -15,18 +15,18 @@ section#fileExplorer {
 			padding: 1px;
 		}
 
-		div.explorer-header{
+		div.explorer-header {
 			.div();
 			border-bottom: 1px solid @lightgrey;
+			white-space: nowrap;
 			div.breadcrumbs {
 				.div();
 				display: inline-block;
-				width: 63%;
+				width: 65%;
 				color: @darkblue;
 				margin-left: 20px;
 				font-size: 24px;
 				line-height: 35px;
-				border-bottom: 1px solid @lightgrey;
 				padding-bottom: 7px;
 
 				a {
@@ -43,13 +43,13 @@ section#fileExplorer {
 					padding-bottom: 4px;
 				}
 			}
-			div.controls{
+			div.controls {
 				.div();
 				display: inline-block;
 				width: 35%;
-				div.actions{
+				div.actions {
 					display: inline-block;
-					button{
+					button {
 						padding: 3px 6px;
 						margin: 0 3px;
 						border: none;
@@ -58,11 +58,14 @@ section#fileExplorer {
 						height: 35px;
 						.fs20;
 						color: #787878;
-					&:hover{
-						background: #cdcdcd;
-						color: black;
-						border-radius: 50%;
-					}
+						&:hover {
+							background: #cdcdcd;
+							color: black;
+							border-radius: 50%;
+						}
+						&:focus {
+							outline: 0;
+						}
 					}
 				}
 				div.search {
@@ -83,7 +86,7 @@ section#fileExplorer {
 					input[type=search] {
 						border-radius: 2px;
 						color: @grey;
-						background-color: rgba(0,0,0,0.04);
+						background-color: rgba(0, 0, 0, 0.04);
 						width: 250px;
 						height: 34px;
 						padding-left: 20px;
@@ -99,7 +102,6 @@ section#fileExplorer {
 
 			}
 		}
-
 
 		ul.data {
 			margin-top: 60px;
@@ -139,7 +141,7 @@ section#fileExplorer {
 					height: 100%;
 				}
 
-				.name {
+				span.name {
 					color: #616161;
 					font-size: 15px;
 					font-weight: 700;
@@ -152,7 +154,37 @@ section#fileExplorer {
 					text-overflow: ellipsis;
 					top: 40px;
 				}
-				.details {
+
+				div.rename {
+					color: #616161;
+					.fs15;
+					font-weight: 700;
+					line-height: 20px;
+					width: 190px;
+					white-space: nowrap;
+					position: absolute;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					top: 35px;
+					right: 5px;
+					display: none;
+					input {
+						width: 130px;
+					}
+					div.right-buttons {
+						position: absolute;
+						right: 0;
+						top: 3px;
+
+						button {
+							background: transparent;
+							border: none;
+							cursor: pointer;
+						}
+					}
+				}
+
+				span.details {
 					color: #b6c1c9;
 					font-size: 13px;
 					font-weight: 400;
