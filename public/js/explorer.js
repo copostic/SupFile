@@ -92,6 +92,7 @@ $('div.explorer-header > div.controls > div.search > input', $fileExplorer).on('
 
     }
 
+
 });
 
 
@@ -148,7 +149,6 @@ breadcrumbs.on('click', 'a', function(e) {
 
 });
 
-
 $('div.actions > button', $mainSection).on('click', function() {
     var $file = $fileList.find('li.active'),
         action = $(this).attr('id'),
@@ -163,12 +163,34 @@ $('div.actions > button', $mainSection).on('click', function() {
                     action: action,
                     path: currentPath,
                     folderName: folderName
-                }, window.location.reload());
+                }, function() {
+                    getList();
+                });
             } else {
                 $("#toast").html('Please type a file name.').fadeIn().delay(1500).fadeOut();
                 $('div.breadcrumb-rename', breadcrumbs).first().hide();
             }
         });
+    } else if (action === 'upload') {
+        var uploader = new qq.FineUploader({
+            debug: true,
+            request: {
+                endpoint: '/uploader',
+                params: {
+                    path: decodeURIComponent(window.location.hash).slice(1).split('=')[0]
+                }
+            },
+            retry: {
+                enableAuto: true
+            },
+            element: document.getElementById("uploader"),
+            callbacks:{
+                onComplete: function() {
+                    getList();
+                }
+            }
+        });
+
     }
 
     else if ($file.length) {
@@ -195,7 +217,9 @@ $('div.actions > button', $mainSection).on('click', function() {
                                 action: action,
                                 path: path,
                                 newName: newName
-                            }, window.location.reload());
+                            }, function(data) {
+                                getList(data);
+                            });
                             resultMessage = 'Your file has been renamed.';
                         } else {
                             resultMessage = 'Your file name is not valid.';
@@ -206,7 +230,7 @@ $('div.actions > button', $mainSection).on('click', function() {
                                 action: action,
                                 path: path,
                                 newName: newName
-                            }, window.location.reload());
+                            }, getList());
                             resultMessage = 'Your folder has been renamed.';
 
                         } else {
@@ -237,7 +261,9 @@ $('div.actions > button', $mainSection).on('click', function() {
                 }
             });
         } else {
-            $.post('http://supfile.tk/explorer', {action: action, path: path}, window.location.reload());
+            $.post('http://supfile.tk/explorer', {action: action, path: path}, function(data) {
+                getList(data);
+            });
         }
     } else {
         $("#toast").html('Please select a file').fadeIn().delay(1500).fadeOut();
@@ -537,15 +563,27 @@ function showPreview(path) {
 }
 
 
-function getList() {
-    $.ajax({
-        type: 'POST',
-        url: 'http://supfile.tk/explorer',
-        success: function(files) {
-            data = files;
-        },
-        async: false
-    });
+function getList(files) {
+    if (files) {
+
+        data = files;
+        response = [files];
+        breadcrumbsUrls = '';
+        goToHashPath(window.location.hash);
+    } else {
+
+        $.ajax({
+            type: 'POST',
+            url: 'http://supfile.tk/explorer',
+            success: function(files) {
+                data = files;
+                response = [files];
+                breadcrumbsUrls = '';
+                goToHashPath(window.location.hash);
+            },
+            async: false
+        });
+    }
 }
 
 function saveFile(name, data) {
