@@ -29,7 +29,7 @@ class User
 
 
     public function createOnDB($email, $firstName, $lastName, $password = '') {
-        return $this->db->result('INSERT INTO users (email, first_name, last_name, password, available_space, total_space) VALUES (?,?,?,?,30,30);', [$email, $firstName, $lastName, $password]);
+        return $this->db->result('INSERT INTO users (email, first_name, last_name, password, uuid, available_space, total_space) VALUES (?,?,?,?,30,30);', [$email, $firstName, $lastName, $password, random_text()]);
     }
 
     public function checkIfExists($email) {

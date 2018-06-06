@@ -84,7 +84,7 @@ function createZip($source, $destination) {
 }
 
 if (empty($_SESSION['connected'])) {
-    header('Location: /');
+    header('Location: /auth/login');
     exit();
 }
 
@@ -198,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         header('Content-type: application/json');
 
-            echo json_encode(array(
+        echo json_encode(array(
             "name" => "files",
             "type" => "folder",
             "path" => $userDirectory,

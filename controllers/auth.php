@@ -33,6 +33,7 @@ if (!empty($page)) {
                     $_SESSION['email'] = $profile->email;
                     $_SESSION['first_name'] = $result['first_name'] ?? $profile->firstName;
                     $_SESSION['last_name'] = $result['last_name'] ?? $profile->lastName;
+                    $_SESSION['uuid'] = $result['uuid'];
 
                 }
             }

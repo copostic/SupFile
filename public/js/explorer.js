@@ -3,8 +3,6 @@ var $mainSection = $('section.content#fileExplorer'),
     breadcrumbs = $('div.breadcrumbs', $mainSection),
     $fileList = $fileExplorer.find('ul.data');
 
-// Start by fetching the file data from scan.php with an AJAX request
-
 var data = false;
 getList();
 var response = [data],
@@ -14,12 +12,27 @@ var response = [data],
 var folders = [],
     files = [];
 
+if (window.location.hash && window.location.hash === '#_=_') {
+    if (window.history && history.pushState) {
+        window.history.pushState("", document.title, window.location.pathname);
+    } else {
+        var scroll = {
+            top: document.body.scrollTop,
+            left: document.body.scrollLeft
+        };
+        window.location.hash = '';
+        document.body.scrollTop = scroll.top;
+        document.body.scrollLeft = scroll.left;
+    }
+}
+
 // This event listener monitors changes on the URL. We use it to
 // capture back/forward navigation in the browser.
 
 $(window).on('hashchange', function() {
 
     goToHashPath(window.location.hash);
+    $('div#uploader').html('');
 
     // We are triggering the event. This will execute
     // this function on page load, so that we show the correct folder:
@@ -157,7 +170,6 @@ $('div.actions > button', $mainSection).on('click', function() {
         $('div.breadcrumb-rename', breadcrumbs).first().css('display', 'inline-block');
         $('button#validateRename').on('click', function() {
             folderName = $('div.breadcrumb-rename > input', breadcrumbs).val();
-            console.log(folderName);
             if (folderName !== '') {
                 $.post('http://supfile.tk/explorer', {
                     action: action,
@@ -172,24 +184,26 @@ $('div.actions > button', $mainSection).on('click', function() {
             }
         });
     } else if (action === 'upload') {
-        var uploader = new qq.FineUploader({
-            debug: true,
-            request: {
-                endpoint: '/uploader',
-                params: {
-                    path: decodeURIComponent(window.location.hash).slice(1).split('=')[0]
+        if (!$('div#uploader').html().length) {
+            var uploader = new qq.FineUploader({
+                debug: true,
+                request: {
+                    endpoint: '/uploader',
+                    params: {
+                        path: decodeURIComponent(window.location.hash).slice(1).split('=')[0]
+                    }
+                },
+                retry: {
+                    enableAuto: true
+                },
+                element: document.getElementById("uploader"),
+                callbacks: {
+                    onComplete: function() {
+                        getList();
+                    }
                 }
-            },
-            retry: {
-                enableAuto: true
-            },
-            element: document.getElementById("uploader"),
-            callbacks:{
-                onComplete: function() {
-                    getList();
-                }
-            }
-        });
+            });
+        }
 
     }
 
@@ -212,7 +226,6 @@ $('div.actions > button', $mainSection).on('click', function() {
                     if (isFile && newName.length) {
                         newName += '.' + fileExtension;
                         if (validFileName.test(newName)) {
-                            console.log(validFileName.test(newName));
                             $.post('http://supfile.tk/explorer', {
                                 action: action,
                                 path: path,
