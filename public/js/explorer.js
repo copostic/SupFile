@@ -273,6 +273,55 @@ $('div.actions > button', $mainSection).on('click', function() {
 
                 }
             });
+        } else if (action === 'display') {
+            $.ajax({
+                url: 'http://supfile.tk/explorer',
+                type: 'POST',
+                data: {action: 'download', path: path},
+                cache: false,
+                xhr: function() {
+                    var xhr = new XMLHttpRequest();
+                    xhr.responseType = 'blob';
+                    return xhr;
+                },
+                success: function(data) {
+                    if (data != null && navigator.msSaveBlob)
+                        return navigator.msSaveBlob(new Blob([data], {type: data.type}), '');
+                    var blob = new Blob([data], {type: data.type});
+                    var url = window.URL.createObjectURL(blob);
+                    var tag;
+                    if (data.type.split('/')[0] === 'image') {
+                        tag = $("<img src='" + url + "' id='preview'/>");
+                    } else if (data.type === 'application/pdf') {
+                        tag = $('<object height="950" data="' + url + '" type="application/pdf" width="860">\n' +
+                            '  <p>It appears you don\'t have a PDF plugin for this browser.\n' +
+                            '    No biggie... you can <a href="' + url + '">click here to\n' +
+                            '    download the PDF file.</a>\n' +
+                            '  </p>\n' +
+                            '</object>');
+                    } else if (data.type.split('/')[0] === 'video') {
+                        tag = $('<video controls src="' + url + '">Woops we ran into an issue ... </video>');
+                    } else if(data.type.split('/')[0] === 'audio'){
+                        tag = $('<audio controls src="' + url + '">Woops we ran into an issue ... </audio>');
+                    }else if(data.type.split('/')[0] === 'text'){
+                        var myReader = new FileReader();
+                        myReader.addEventListener("loadend", function(e){
+                            $('#uploader').html(e.target.result);
+                        });
+                        myReader.readAsText(blob);
+                    }
+                    //TODO: Add it to a modal instead
+                    $("#uploader").append(tag);
+
+                    /*                    var a = $("<a style='display: none;'/>");
+                                        a.attr("href", url);
+                                        $("body").append(a);*/
+                },
+                error: function() {
+
+                }
+            });
+
         } else {
             $.post('http://supfile.tk/explorer', {action: action, path: path}, function(data) {
                 getList(data);
