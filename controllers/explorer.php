@@ -13,19 +13,19 @@ function scan($path) {
             if (!$file || $file[0] == '.') {
                 continue;
             }
-            if (is_dir($path . '/' . $file)) {
+            if (is_dir($path . '\\' . $file)) {
                 $files[] = [
                     "name" => $file,
                     "type" => "folder",
-                    "path" => $path . '/' . $file,
-                    "items" => scan($path . '/' . $file)
+                    "path" => $path . '\\' . $file,
+                    "items" => scan($path . '\\' . $file)
                 ];
             } else {
                 $files[] = [
                     "name" => $file,
                     "type" => "file",
-                    "path" => $path . '/' . $file,
-                    "size" => filesize($path . '/' . $file)
+                    "path" => $path . '\\' . $file,
+                    "size" => filesize($path . '\\' . $file)
                 ];
             }
         }
@@ -45,11 +45,6 @@ function rmdirRecursive($path) {
     rmdir($path);
 }
 
-if (file_exists('test.zip')) {
-    unlink('test.zip');
-
-}
-
 
 function createZip($source, $destination) {
     if (!extension_loaded('zip') || !file_exists($source)) {
@@ -67,7 +62,7 @@ function createZip($source, $destination) {
         $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
 
         foreach ($files as $file) {
-            if ($file->getFilename() != '.' && $file->getFilename() != '..' && $file->getFilename() != 'C:' && $file->getFilename() != 'E:') {
+            if ($file->getFilename() != '.' && $file->getFilename() != '..' && $file->getFilename() != 'E:') {
                 $file = str_replace('\\', '/', $file);
 
                 if (is_dir($file) === true) {
@@ -93,9 +88,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $path = $_POST['path'] ?? null;
     $newName = $_POST['newName'] ?? null;
     $folderName = $_POST['folderName'] ?? null;
-    $checkPath = explode('/', $path);
+    $checkPath = explode('\\', $path);
 
-    if ($checkPath[0] == 'files' && $checkPath[1] == $_SESSION['uuid'] && !in_array('..', $checkPath) && !in_array('.', $checkPath)) {
+    if ($checkPath[0] == 'E:' && $checkPath[1] == $_SESSION['uuid'] && !in_array('..', $checkPath) && !in_array('.', $checkPath)) {
         switch ($action) {
             case 'download':
                 if (file_exists($path)) {
@@ -103,8 +98,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $arrayFile = explode('/', $path);
                         $folderName = array_pop($arrayFile);
                         $folderName .= '.zip';
-                        createZip($path, 'files/zip/' . $folderName);
-                        $path = 'files/zip/' . $folderName;
+                        createZip($path, USER_DIR . 'zip/' . $folderName);
+                        $path = USER_DIR . 'zip/' . $folderName;
                     }
                     $type = get_file_mime_type($path);
                     header("Pragma: public");
@@ -167,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             case 'add':
                 $count = 1;
-                $fullDir = PATH . $path . '/' . $folderName;
+                $fullDir = $path . '\\' . $folderName;
                 if (file_exists($fullDir) && is_dir($fullDir)) {
                     if (!file_exists($fullDir . ' (1)')) {
                         mkdir($fullDir . ' (1)', 0777, true);
@@ -183,23 +178,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if ($result)
                     $result = ['success' => 'true', 'message' => 'Directory successfully created.'];
                 else
-                    $result = ['success' => 'true', 'message' => 'Error while creating the directory.'];
+                    $result = ['success' => 'false', 'message' => 'Error while creating the directory.'];
                 break;
 
         }
     }
     if (empty($action) || $action == "delete" || $action == 'rename') {
-        $userDirectory = 'files/' . $_SESSION['uuid'];
+        $userDirectory = USER_DIR . $_SESSION['uuid'];
         if (!file_exists($userDirectory)) {
             mkdir($userDirectory);
-            copy(PATH . '/files/example/README.txt', $userDirectory . '/README.txt');
+            copy(USER_DIR . 'example/README.txt', $userDirectory . '/README.txt');
         }
         $response = scan($userDirectory);
 
         header('Content-type: application/json');
 
         echo json_encode(array(
-            "name" => "files",
+            "name" => 'E:',
             "type" => "folder",
             "path" => $userDirectory,
             "items" => $response

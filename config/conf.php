@@ -5,6 +5,7 @@ define('LIB', PATH . 'libraries/');
 define('MODELS', PATH . 'models/');
 define('VIEWS', PATH . 'views/');
 define('CONTROLLERS', PATH . 'controllers/');
+define('USER_DIR', 'E:\\');
 
 if (!defined('BASE_URL_PART'))
     define("BASE_URL_PART", 0);

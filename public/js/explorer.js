@@ -185,7 +185,7 @@ $('div.actions > button', $mainSection).on('click', function() {
         });
     } else if (action === 'upload') {
         if (!$('div#uploader').html().length) {
-            var path = decodeURIComponent(window.location.hash).slice(1).split('=')[0].length ? decodeURIComponent(window.location.hash).slice(1).split('=')[0] : ('files/' + uuid);
+            var path = decodeURIComponent(window.location.hash).slice(1).split('=')[0].length ? decodeURIComponent(window.location.hash).slice(1).split('=')[0] : ('E:\\' + uuid);
             var uploader = new qq.FineUploader({
                 debug: true,
                 request: {
@@ -382,7 +382,7 @@ function goToHashPath(hash) {
         // if there is no hash
 
         else {
-            var path = data.path.length > 0 ? data.path : ('files/' + uuid);
+            var path = (typeof data.path !== 'undefined') ? data.path : ('E:\\' + uuid);
             if (breadcrumbsUrls.length > 0)
                 breadcrumbsUrls.push(path);
             else
@@ -396,11 +396,11 @@ function goToHashPath(hash) {
 // Splits a file path and turns it into clickable breadcrumbs
 
 function generateBreadcrumbs(nextDir) {
-    var path = nextDir.split('/').slice(0);
+    var path = nextDir.split('\\').slice(0);
     for (var i = 1; i < path.length; i++) {
-        path[i] = path[i - 1] + '/' + path[i];
+        path[i] = path[i - 1] + '\\' + path[i];
     }
-    if (path[0] === 'files') {
+    if (path[0] === 'E:') {
         path.shift();
     }
     return path;
@@ -410,12 +410,14 @@ function generateBreadcrumbs(nextDir) {
 // Locates a file by path
 
 function searchByPath(dir) {
-    var path = dir.split('/'),
+    var path = dir.split('\\'),
         demo = response,
         flag = 0;
-
     for (var i = 0; i < path.length; i++) {
         for (var j = 0; j < demo.length; j++) {
+
+            console.log(demo[j].name);
+            console.log(path[i]);
             if (demo[j].name === path[i]) {
                 flag = 1;
                 demo = demo[j].items;
@@ -585,7 +587,7 @@ function render(data) {
 
         breadcrumbsUrls.forEach(function(u, i) {
 
-            var name = u.split('/');
+            var name = u.split('\\');
             if (name[name.length - 1] === uuid)
                 name[name.length - 1] = 'My Drive';
 
