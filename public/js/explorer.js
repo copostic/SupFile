@@ -185,12 +185,13 @@ $('div.actions > button', $mainSection).on('click', function() {
         });
     } else if (action === 'upload') {
         if (!$('div#uploader').html().length) {
+            var path = decodeURIComponent(window.location.hash).slice(1).split('=')[0].length ? decodeURIComponent(window.location.hash).slice(1).split('=')[0] : ('files/' + uuid);
             var uploader = new qq.FineUploader({
                 debug: true,
                 request: {
                     endpoint: '/uploader',
                     params: {
-                        path: decodeURIComponent(window.location.hash).slice(1).split('=')[0]
+                        path: path
                     }
                 },
                 retry: {
@@ -217,7 +218,7 @@ $('div.actions > button', $mainSection).on('click', function() {
             resultMessage = '';
         if (action === 'rename') {
             var $divRename = $file.find('div.rename');
-            $divRename.show();
+            $divRename.show().find('input').trigger('focus');
             $('div.right-buttons > button').on('click', function() {
                 if ($(this).attr('id') === 'cancelRename')
                     $divRename.hide();
@@ -293,7 +294,7 @@ $('div.actions > button', $mainSection).on('click', function() {
                     if (data.type.split('/')[0] === 'image') {
                         tag = $("<img src='" + url + "' id='preview'/>");
                     } else if (data.type === 'application/pdf') {
-                        tag = $('<object height="950" data="' + url + '" type="application/pdf" width="860">\n' +
+                        tag = $('<object data="' + url + '" type="application/pdf" width="100%">\n' +
                             '  <p>It appears you don\'t have a PDF plugin for this browser.\n' +
                             '    No biggie... you can <a href="' + url + '">click here to\n' +
                             '    download the PDF file.</a>\n' +
@@ -301,21 +302,17 @@ $('div.actions > button', $mainSection).on('click', function() {
                             '</object>');
                     } else if (data.type.split('/')[0] === 'video') {
                         tag = $('<video controls src="' + url + '">Woops we ran into an issue ... </video>');
-                    } else if(data.type.split('/')[0] === 'audio'){
+                    } else if (data.type.split('/')[0] === 'audio') {
                         tag = $('<audio controls src="' + url + '">Woops we ran into an issue ... </audio>');
-                    }else if(data.type.split('/')[0] === 'text'){
+                    } else if (data.type.split('/')[0] === 'text') {
                         var myReader = new FileReader();
-                        myReader.addEventListener("loadend", function(e){
-                            $('#uploader').html(e.target.result);
+                        myReader.addEventListener("loadend", function(e) {
+                            $('div#modal > div.modal-content > div.content').html(e.target.result).parents('div#modal').show();
                         });
                         myReader.readAsText(blob);
                     }
-                    //TODO: Add it to a modal instead
-                    $("#uploader").append(tag);
-
-                    /*                    var a = $("<a style='display: none;'/>");
-                                        a.attr("href", url);
-                                        $("body").append(a);*/
+                    if (typeof myReader === 'undefined')
+                        $('div#modal > div.modal-content > div.content').html(tag).parents('div#modal').show();
                 },
                 error: function() {
 
@@ -385,9 +382,13 @@ function goToHashPath(hash) {
         // if there is no hash
 
         else {
-            currentPath = data.path;
-            breadcrumbsUrls.push(data.path);
-            render(searchByPath(data.path));
+            var path = data.path.length > 0 ? data.path : ('files/' + uuid);
+            if (breadcrumbsUrls.length > 0)
+                breadcrumbsUrls.push(path);
+            else
+                breadcrumbsUrls = [path];
+            currentPath = path;
+            render(searchByPath(path));
         }
     }
 }
@@ -514,7 +515,7 @@ function render(data) {
             }
 
             var folder = $('<li class="folders">' +
-                '<a href="' + f.path + '" title="' + f.path + '" class="folders">' + icon +
+                '<a href="' + f.path + '" title="' + name + '" class="folders">' + icon +
                 '<span class="name">' + name + '</span> ' +
                 '<span class="details">' + itemsLength + '</span>' +
                 '<div class="rename">' +
@@ -545,7 +546,7 @@ function render(data) {
             icon = '<span class="icon file f-' + fileType + '">.' + fileType + '</span>';
 
             var file = $('<li class="files">' +
-                '<a href="' + f.path + '" title="' + f.path + '" class="files" data-extension="' + fileType + '">' + icon +
+                '<a href="' + f.path + '" title="' + name + '" class="files" data-extension="' + fileType + '">' + icon +
                 '<span class="name">' + name + '</span> ' +
                 '<div class="rename">' +
                 '<input type="text"> ' +

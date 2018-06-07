@@ -1,4 +1,10 @@
 <div id="toast"></div>
+<div id="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="content"></div>
+    </div>
+</div>
 <footer id="footer">
     <div class="container margcontainer">
         <div class="row">

@@ -1,7 +1,7 @@
 @import '../helpers';
 @import '../conf';
 
-div#toast{
+div#toast {
 	display: none;
 	max-width: 300px;
 	background-color: #333;
@@ -10,11 +10,50 @@ div#toast{
 	padding: 16px;
 	position: fixed;
 	z-index: 1;
-	bottom:15px;
+	bottom: 15px;
 	left: 0;
 	right: 0;
 	margin: 0 auto;
 	color: @white;
+}
+
+div#modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
+	div.modal-content {
+		background-color: #fefefe;
+		margin: 15% auto;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 80%;
+		span.close {
+			color: #aaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+			position: absolute;
+			right: 0;
+			top: 0;
+			&:hover, &:focus {
+				color: black;
+				text-decoration: none;
+				cursor: pointer;
+			}
+		}
+		div.content{
+			*{
+				width: 100%	;
+			}
+		}
+	}
 }
 
 footer#footer {

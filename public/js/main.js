@@ -8,9 +8,9 @@ $('form#login, form#register').on('submit', function(e) {
         data: data,
         success: function(data) {
             data = JSON.parse(data);
-            if(data.success){
+            if (data.success) {
                 window.location.href = '/explorer';
-            } else{
+            } else {
                 $('div#errorMessage').show().html(data.message);
             }
         },
@@ -18,4 +18,9 @@ $('form#login, form#register').on('submit', function(e) {
             console.log(data);
         }
     })
+});
+
+$('div#modal > div.modal-content > span.close').on('click', function() {
+    $('div.modal-content > div.content').html('');
+    $(this).parents('div#modal').hide();
 });
