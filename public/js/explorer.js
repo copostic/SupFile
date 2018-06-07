@@ -187,7 +187,6 @@ $('div.actions > button', $mainSection).on('click', function() {
         if (!$('div#uploader').html().length) {
             var path = decodeURIComponent(window.location.hash).slice(1).split('=')[0].length ? decodeURIComponent(window.location.hash).slice(1).split('=')[0] : ('E:\\' + uuid);
             var uploader = new qq.FineUploader({
-                debug: true,
                 request: {
                     endpoint: '/uploader',
                     params: {
@@ -415,9 +414,6 @@ function searchByPath(dir) {
         flag = 0;
     for (var i = 0; i < path.length; i++) {
         for (var j = 0; j < demo.length; j++) {
-
-            console.log(demo[j].name);
-            console.log(path[i]);
             if (demo[j].name === path[i]) {
                 flag = 1;
                 demo = demo[j].items;

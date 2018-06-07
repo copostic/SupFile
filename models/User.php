@@ -29,7 +29,7 @@ class User
 
 
     public function createOnDB($email, $firstName, $lastName, $password = '') {
-        return $this->db->result('INSERT INTO users (email, first_name, last_name, password, uuid, available_space, total_space) VALUES (?,?,?,?,30,30);', [$email, $firstName, $lastName, $password, random_text()]);
+        return $this->db->result('INSERT INTO users (email, first_name, last_name, password, uuid) VALUES (?,?,?,?);', [$email, $firstName, $lastName, $password, random_text()]);
     }
 
     public function checkIfExists($email) {
@@ -37,7 +37,7 @@ class User
     }
 
     public function getByEmail($email) {
-        return $this->db->result('SELECT id, first_name, last_name, password, uuid, available_space, total_space FROM users WHERE email = ?', [$email]);
+        return $this->db->result('SELECT id, first_name, last_name, password, uuid FROM users WHERE email = ?', [$email]);
     }
 
     /**
@@ -80,7 +80,7 @@ class User
             if (!$userExist) {
                 $encryptedPassword = password_hash($password, PASSWORD_ARGON2I);
                 $uuid = random_text();
-                $result = $this->db->result("INSERT INTO users (email, password, first_name, last_name, uuid, available_space, total_space) VALUES (?,?,?,?,?,30,30)", [$email, $encryptedPassword, $firstName, $lastName, $uuid], true);
+                $result = $this->db->result("INSERT INTO users (email, password, first_name, last_name, uuid) VALUES (?,?,?,?,?)", [$email, $encryptedPassword, $firstName, $lastName, $uuid], true);
                 if ($result) {
                     $_SESSION['connected'] = $this->connected = true;
                     $_SESSION['email'] = $this->email = $email;
