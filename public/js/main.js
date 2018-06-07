@@ -8,10 +8,10 @@ $('form#login, form#register').on('submit', function(e) {
         data: data,
         success: function(data) {
             data = JSON.parse(data);
-            if (data.success) {
+            if (data.success === "true") {
                 window.location.href = '/explorer';
             } else {
-                $('div#errorMessage').show().html(data.message);
+                $('div#toast').html(data.message).fadeIn().delay(1500).fadeOut();
             }
         },
         error: function(data) {

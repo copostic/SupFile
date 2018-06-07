@@ -29,7 +29,7 @@ class User
 
 
     public function createOnDB($email, $firstName, $lastName, $password = '') {
-        return $this->db->result('INSERT INTO users (email, first_name, last_name, password, uuid) VALUES (?,?,?,?);', [$email, $firstName, $lastName, $password, random_text()]);
+        return $this->db->result('INSERT INTO users (email, first_name, last_name, password, uuid) VALUES (?,?,?,?,?);', [$email, $firstName, $lastName, $password, random_text()], true);
     }
 
     public function checkIfExists($email) {
@@ -50,15 +50,19 @@ class User
         if ($userExist) {
             $result = $this->getByEmail($email);
             $encrypted_password = $result['password'] ?? '';
-            if (password_verify($password, $encrypted_password)) {
-                $_SESSION['connected'] = $this->connected = true;
-                $_SESSION['email'] = $this->email = $email;
-                $_SESSION['first_name'] = $this->firstName = $result['first_name'] ?? 'John';
-                $_SESSION['last_name'] = $this->lastName = $result['last_name'] ?? 'Doe';
-                $_SESSION['uuid'] = $this->uuid= $result['uuid'] ?? '';
-                $result = ['success' => 'true', 'message' => 'User successfully connected'];
+            if (!empty($result['password'])) {
+                if (password_verify($password, $encrypted_password)) {
+                    $_SESSION['connected'] = $this->connected = true;
+                    $_SESSION['email'] = $this->email = $email;
+                    $_SESSION['first_name'] = $this->firstName = $result['first_name'] ?? 'John';
+                    $_SESSION['last_name'] = $this->lastName = $result['last_name'] ?? 'Doe';
+                    $_SESSION['uuid'] = $this->uuid = $result['uuid'] ?? '';
+                    $result = ['success' => 'true', 'message' => 'User successfully connected'];
+                } else {
+                    $result = ['success' => 'false', 'message' => 'Password mismatch.'];
+                }
             } else {
-                $result = ['success' => 'false', 'message' => 'Password mismatch.'];
+                $result = ['success' => 'false', 'message' => 'Please connect with social instead.'];
             }
         } else {
             $result = ['success' => 'false', 'message' => 'User doesn\'t exist'];
