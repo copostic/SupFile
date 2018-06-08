@@ -95,17 +95,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             case 'download':
                 if (file_exists($path)) {
                     if (is_dir($path)) {
-                        $arrayFile = explode('/', $path);
+                        $arrayFile = explode('\\', $path);
                         $folderName = array_pop($arrayFile);
                         $folderName .= '.zip';
-                        createZip($path, USER_DIR . 'zip/' . $folderName);
-                        $path = USER_DIR . 'zip/' . $folderName;
+                        createZip($path, USER_DIR . 'zip\\' . $folderName);
+                        $path = USER_DIR . 'zip\\' . $folderName;
                     }
                     $type = get_file_mime_type($path);
                     header("Pragma: public");
                     header("Expires: -1");
                     header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-                    header('Last-Modified: ' . gmdate('D, d M Y H:i:s', filemtime('test.zip')) . ' GMT');
+                    header('Last-Modified: ' . gmdate('D, d M Y H:i:s', filemtime($path)) . ' GMT');
                     header('Content-Type: ' . $type);
                     header('Content-Disposition: attachment; filename="' . end($checkPath) . '"');
                     header('Content-Length: ' . filesize($path));

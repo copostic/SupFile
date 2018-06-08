@@ -29,8 +29,9 @@ class User
 
 
     public function createOnDB($email, $firstName, $lastName, $password = '') {
-        return $this->db->result('INSERT INTO users (email, first_name, last_name, password, uuid) VALUES (?,?,?,?,?);', [$email, $firstName, $lastName, $password, random_text()], true);
-    }
+        $this->db->result('INSERT INTO users (email, first_name, last_name, password, uuid) VALUES (?,?,?,?,?);', [$email, $firstName, $lastName, $password, random_text()], true);
+		return  $this->getByEmail($email);
+	}
 
     public function checkIfExists($email) {
         return $this->db->count('users', 'email', $email);

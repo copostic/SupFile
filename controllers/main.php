@@ -1,6 +1,11 @@
 <?php
 
-if ($action == 'home') {
+if(!empty($_SESSION['connected'])){
+	header('Location:/explorer');
+	exit;
+}
+
+if ($action == 'home' || $action == 'terms-and-conditions') {
     $title = '';
 } else {
     $action = 404;

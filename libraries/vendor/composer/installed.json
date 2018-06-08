@@ -1,0 +1,141 @@
+[
+    {
+        "name": "fineuploader/php-traditional-server",
+        "version": "1.2.2",
+        "version_normalized": "1.2.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/FineUploader/php-traditional-server.git",
+            "reference": "ca3b7277c0dbddd2bf8bc97ed94ecc65776a2190"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/FineUploader/php-traditional-server/zipball/ca3b7277c0dbddd2bf8bc97ed94ecc65776a2190",
+            "reference": "ca3b7277c0dbddd2bf8bc97ed94ecc65776a2190",
+            "shasum": ""
+        },
+        "time": "2017-02-23T15:06:09+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Endpoint handler for Fine Uploader's traditional server requests.",
+        "homepage": "http://fineuploader.com"
+    },
+    {
+        "name": "hybridauth/hybridauth",
+        "version": "v3.0.0-rc.5",
+        "version_normalized": "3.0.0.0-RC5",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/hybridauth/hybridauth.git",
+            "reference": "812ae85650555fc3e3a2e6a0bcd618603c05690c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/hybridauth/hybridauth/zipball/812ae85650555fc3e3a2e6a0bcd618603c05690c",
+            "reference": "812ae85650555fc3e3a2e6a0bcd618603c05690c",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "ext-curl": "*",
+            "phpunit/phpunit": "~4.8.35"
+        },
+        "time": "2018-04-30T06:47:37+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Hybridauth\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Miled",
+                "email": "hybridauth@gmail.com"
+            }
+        ],
+        "description": "PHP Social Authentication Library",
+        "homepage": "https://hybridauth.github.io",
+        "keywords": [
+            "Authentication",
+            "OpenId",
+            "api",
+            "authorization",
+            "facebook",
+            "google",
+            "oauth",
+            "social",
+            "twitter"
+        ]
+    },
+    {
+        "name": "smarty/smarty",
+        "version": "v3.1.32",
+        "version_normalized": "3.1.32.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/smarty-php/smarty.git",
+            "reference": "ac9d4b587e5bf53381e21881820a9830765cb459"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/smarty-php/smarty/zipball/ac9d4b587e5bf53381e21881820a9830765cb459",
+            "reference": "ac9d4b587e5bf53381e21881820a9830765cb459",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2"
+        },
+        "time": "2018-04-24T14:53:33+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "libs/bootstrap.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-3.0"
+        ],
+        "authors": [
+            {
+                "name": "Monte Ohrt",
+                "email": "monte@ohrt.com"
+            },
+            {
+                "name": "Uwe Tews",
+                "email": "uwe.tews@googlemail.com"
+            },
+            {
+                "name": "Rodney Rehm",
+                "email": "rodney.rehm@medialize.de"
+            }
+        ],
+        "description": "Smarty - the compiling PHP template engine",
+        "homepage": "http://www.smarty.net",
+        "keywords": [
+            "templating"
+        ]
+    }
+]

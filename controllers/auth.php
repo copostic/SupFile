@@ -6,6 +6,8 @@ use Hybridauth\HttpClient;
 use Hybridauth\Storage\Session;
 
 $view = $page ?? 'login';
+$result = ['success' => 'unknown', 'message' => 'result not modified'];
+
 if (!empty($page)) {
     if ($page == 'social') {
         try {
@@ -31,8 +33,8 @@ if (!empty($page)) {
                     }
                     $_SESSION['connected'] = true;
                     $_SESSION['email'] = $profile->email;
-                    $_SESSION['first_name'] = $result['first_name'] ?? $profile->firstName;
-                    $_SESSION['last_name'] = $result['last_name'] ?? $profile->lastName;
+                    $_SESSION['first_name'] = $result['first_name'] ?? $profile->firstName ?? 'John';
+                    $_SESSION['last_name'] = $result['last_name'] ?? $profile->lastName ?? 'John';
                     $_SESSION['uuid'] = $result['uuid'];
 
                 }
@@ -76,7 +78,7 @@ if (!empty($page)) {
     header('Location: /auth/login');
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && $view !== 'logout') {
     $smarty->display(VIEWS . 'inc/header.tpl');
     $smarty->display(VIEWS . 'account/' . $view . '.tpl');
     $smarty->display(VIEWS . 'inc/footer.tpl');

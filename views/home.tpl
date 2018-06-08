@@ -10,10 +10,10 @@
                         <div class="form-row">
                             <div class="col-12 text-header">We make secure cloud storage simple. Create an account and get 30 GB free on SupFile’s end-to-end encrypted cloud collaboration platform today!</div>
                             <div class="col-12 col-md-6">
-                                <button class="btn-header-up">UPLOAD</button>
+                                <button id="buttonLogin" class="btn-header-up">LOGIN</button>
                             </div>
                             <div class="col-12 col-md-6">
-                                <button class="btn-header-do">DOWNLOAD</button>
+                                <button id="buttonRegister" class="btn-header-do">REGISTER</button>
                             </div>
                         </div>
                     </form>
@@ -53,35 +53,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                        <div>
-                            <img src="/public/img/cloud-2044823_640.png" width="120px">
-                        </div>
-                        <h3>Upload</h3>
-                        <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
-                    </div>
-                </div>
-                    <div class="col-lg-4 ">
-                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <div>
-                                <img src="/public/img/cloud-2044822_640.png" width="120px">
-                            </div>
-                            <h3>Download</h3>
-                            <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <div>
-                                <img src="/public/img/cloud-2044822_640.png" width="120px">
-                            </div>
-                            <h3>Download</h3>
-                            <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
-                        </div>
-                    </div>
-                </div>
             </div>
     </section>
 

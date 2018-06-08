@@ -1,5 +1,4 @@
 composer.phar
-libraries/vendor/
 libraries/composer.lock
 .idea/
 templates_c/

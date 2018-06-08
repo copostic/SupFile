@@ -171,7 +171,7 @@ $('div.actions > button', $mainSection).on('click', function() {
         $('button#validateRename').on('click', function() {
             folderName = $('div.breadcrumb-rename > input', breadcrumbs).val();
             if (folderName !== '') {
-                $.post('http://supfile.tk/explorer', {
+                $.post('/explorer', {
                     action: action,
                     path: currentPath,
                     folderName: folderName
@@ -188,6 +188,7 @@ $('div.actions > button', $mainSection).on('click', function() {
             var path = decodeURIComponent(window.location.hash).slice(1).split('=')[0].length ? decodeURIComponent(window.location.hash).slice(1).split('=')[0] : ('E:\\' + uuid);
             var uploader = new qq.FineUploader({
                 request: {
+					debug: true,
                     endpoint: '/uploader',
                     params: {
                         path: path
@@ -226,7 +227,7 @@ $('div.actions > button', $mainSection).on('click', function() {
                     if (isFile && newName.length) {
                         newName += '.' + fileExtension;
                         if (validFileName.test(newName)) {
-                            $.post('http://supfile.tk/explorer', {
+                            $.post('/explorer', {
                                 action: action,
                                 path: path,
                                 newName: newName
@@ -239,7 +240,7 @@ $('div.actions > button', $mainSection).on('click', function() {
                         }
                     } else {
                         if (validFolderName.test(newName)) {
-                            $.post('http://supfile.tk/explorer', {
+                            $.post('/explorer', {
                                 action: action,
                                 path: path,
                                 newName: newName
@@ -256,7 +257,7 @@ $('div.actions > button', $mainSection).on('click', function() {
 
         } else if (action === 'download') {
             $.ajax({
-                url: 'http://supfile.tk/explorer',
+                url: '/explorer',
                 type: 'POST',
                 data: {action: action, path: path},
                 cache: false,
@@ -275,7 +276,7 @@ $('div.actions > button', $mainSection).on('click', function() {
             });
         } else if (action === 'display') {
             $.ajax({
-                url: 'http://supfile.tk/explorer',
+                url: '/explorer',
                 type: 'POST',
                 data: {action: 'download', path: path},
                 cache: false,
@@ -319,7 +320,7 @@ $('div.actions > button', $mainSection).on('click', function() {
             });
 
         } else {
-            $.post('http://supfile.tk/explorer', {action: action, path: path}, function(data) {
+            $.post('/explorer', {action: action, path: path}, function(data) {
                 getList(data);
             });
         }
@@ -635,7 +636,7 @@ function getList(files) {
 
         $.ajax({
             type: 'POST',
-            url: 'http://supfile.tk/explorer',
+            url: '/explorer',
             success: function(files) {
                 data = files;
                 response = [files];

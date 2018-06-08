@@ -1,6 +1,6 @@
 <?php
 $config = [
-    'callback' => 'http://supfile.tk/auth/social',
+    'callback' => 'https://supfile.cf/auth/social',
     'providers' => [
         'Twitter' => [
             'enabled' => true,

@@ -24,3 +24,13 @@ $('div#modal > div.modal-content > span.close').on('click', function() {
     $('div.modal-content > div.content').html('');
     $(this).parents('div#modal').hide();
 });
+
+$('button#buttonLogin').on('click', function(){
+	window.location.href="/auth/login";
+	
+});
+
+$('button#buttonRegister').on('click', function(){
+	window.location.href="/auth/register";
+	
+});

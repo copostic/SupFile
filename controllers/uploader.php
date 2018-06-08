@@ -6,5 +6,5 @@ function directorySize($directory) {
     }
     return $size;
 }
-
+$uploadDirectory = $_POST['path'] ?? 'E:\\' . $_SESSION['uuid'];
 require_once LIB . 'vendor/fineuploader/php-traditional-server/endpoint.php';
